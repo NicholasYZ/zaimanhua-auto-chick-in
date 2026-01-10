@@ -52,7 +52,10 @@ def checkin_once(cookie_str):
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
-        context = browser.new_context()
+        # 使用真实浏览器 User-Agent
+        context = browser.new_context(
+            user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        )
 
         # 添加 Cookie
         context.add_cookies(cookies)
